@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import CounterMainLayout from "./Counter";
+import React from "react";
+import Reset from "./Reset";
+import { Paper } from "@mui/material";
+import "./index.css";
 
-function App() {
+const App = () => {
+  const [count, setCount] = React.useState(0);
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const handleDecrement = () => {
+    setCount(count - 1);
+  };
+
+  const handleReset = () => {
+    setCount(0);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <Paper className="paper" elevation={3}>
+        <div className="btn-group">
+          <CounterMainLayout
+            count={count}
+            handleIncrement={handleIncrement}
+            handleDecrement={handleDecrement}
+          />
+          <Reset handleReset={handleReset} />
+        </div>
+      </Paper>
     </div>
   );
-}
+};
 
 export default App;
